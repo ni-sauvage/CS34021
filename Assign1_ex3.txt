@@ -1,0 +1,4 @@
+The three main components of computer architecture are:
+1) Instruction set architecture. This is what instructions your machine is capable of performing. For example, a theoretical ISA might not have implemented any shift operations, due to architecture limitations. 
+2) Microarchitecture. This is the components that make up your processor and memory, e.g. How many registers, if there is a floating point unit, the bus size between registers and memory.
+3) Hardware. This is the physical specifics of a Microarchitecture, e.g. distance between components of a microarchitecture, such as ALU and registers and the clock rates of the components. 
