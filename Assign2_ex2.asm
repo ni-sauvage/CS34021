@@ -38,10 +38,10 @@ d_label:
     push r10                        ; store local variable
 rec_call:
     pop r10                         ; Access local variable
-    sub rsp, 32                     ; Allocate 32 bytes of shadow space on stack (16 byte aligned as 32%16 == 0), for 4 parameters
+    sub rsp, 40                     ; Allocate 32 bytes of shadow space on stack (16 byte aligned as 32%16 == 0), for 4 parameters
     call my_sum_4                   ; Recursively call my_sum_4
     add rax, r10                    ; Add result of my_sum_4 to local variable
-    add rsp, 32                     ; Deallocate 32 bytes of shadow space
+    add rsp, 40                     ; Deallocate 32 bytes of shadow space
     push r10                        ; store local variable
 clean_stack:
     add rsp, 8                      ; Deallocate local variable                      
@@ -60,9 +60,9 @@ my_sum_4_wrapper PROC               ; Given N, call my_sum_4 with parameters N, 
     dec rcx                         ; Decrement rcx for next parameter
     mov r9, rcx                     ; c = N - 3
     pop rcx                         ; a = N
-    sub rsp, 32                     ; Allocate 32 bytes of shadow space on stack (16 byte aligned as 32%16 == 0), for 4 parameters
+    sub rsp, 40                     ; Allocate 32 bytes of shadow space on stack (16 byte aligned as 32%16 == 0), for 4 parameters
     call my_sum_4                   ; Call my_sum_4
-    add rsp, 32                     ; Deallocate 32 bytes of shadow space
+    add rsp, 40                     ; Deallocate 32 bytes of shadow space
     ret 0                           ; return 0 (OK)
 my_sum_4_wrapper ENDP
 
@@ -96,9 +96,9 @@ string_loop:
 printing:                       
     inc rbx                         ; Increments pointer so that it is not looking at null space
     mov rcx, rbx                    ; Move pointer into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call print                      ; Call procedure to do system calls to print our number
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     pop rbx                         ; rbx should not be corrupted, restores ebx from value on stack
     mov rsp, rbp                    ; Restores the stack pointer
     pop rbp                         ; Restores RBP saved at start of subroutine
@@ -107,103 +107,104 @@ stringTo ENDP
 
 _start:
     mov rcx, 0                      ; Move 0 into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call my_sum_4_wrapper           ; Call wrapper function
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     mov rcx, rax                    ; Move result of calculation into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call stringTo                   ; Call stringTo function with result as parameter to print
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
 
-    mov rcx, 1                      ; Move 0 into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    mov rcx, 1                      ; Move 1 into rcx (first parameter)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call my_sum_4_wrapper           ; Call wrapper function
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     mov rcx, rax                    ; Move result of calculation into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call stringTo                   ; Call stringTo function with result as parameter to print
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
 
-    mov rcx, 2                      ; Move 0 into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    mov rcx, 2                      ; Move 2 into rcx (first parameter)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call my_sum_4_wrapper           ; Call wrapper function
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     mov rcx, rax                    ; Move result of calculation into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call stringTo                   ; Call stringTo function with result as parameter to print
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
 
-    mov rcx, 3                      ; Move 0 into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    mov rcx, 3                      ; Move 3 into rcx (first parameter)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call my_sum_4_wrapper           ; Call wrapper function
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     mov rcx, rax                    ; Move result of calculation into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call stringTo                   ; Call stringTo function with result as parameter to print
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
 
-    mov rcx, 4                      ; Move 0 into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    mov rcx, 4                      ; Move 4 into rcx (first parameter)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call my_sum_4_wrapper           ; Call wrapper function
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     mov rcx, rax                    ; Move result of calculation into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call stringTo                   ; Call stringTo function with result as parameter to print
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
 
-    mov rcx, 5                      ; Move 0 into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    mov rcx, 5                      ; Move 5 into rcx (first parameter)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call my_sum_4_wrapper           ; Call wrapper function
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     mov rcx, rax                    ; Move result of calculation into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call stringTo                   ; Call stringTo function with result as parameter to print
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
 
-    mov rcx, 6                      ; Move 0 into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    mov rcx, 6                      ; Move 6 into rcx (first parameter)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call my_sum_4_wrapper           ; Call wrapper function
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     mov rcx, rax                    ; Move result of calculation into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call stringTo                   ; Call stringTo function with result as parameter to print
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
 
-    mov rcx, 7                      ; Move 0 into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    mov rcx, 7                      ; Move 7 into rcx (first parameter)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call my_sum_4_wrapper           ; Call wrapper function
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     mov rcx, rax                    ; Move result of calculation into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call stringTo                   ; Call stringTo function with result as parameter to print
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
 
-    mov rcx, 8                      ; Move 0 into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    mov rcx, 8                      ; Move 8 into rcx (first parameter)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call my_sum_4_wrapper           ; Call wrapper function
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     mov rcx, rax                    ; Move result of calculation into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call stringTo                   ; Call stringTo function with result as parameter to print
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
 
-    mov rcx, 9                      ; Move 0 into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    mov rcx, 9                      ; Move 9 into rcx (first parameter)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call my_sum_4_wrapper           ; Call wrapper function
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     mov rcx, rax                    ; Move result of calculation into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call stringTo                   ; Call stringTo function with result as parameter to print
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
 
-    mov rcx, 10                      ; Move 0 into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    mov rcx, 10                     ; Move 10 into rcx (first parameter)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call my_sum_4_wrapper           ; Call wrapper function
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
     mov rcx, rax                    ; Move result of calculation into rcx (first parameter)
-    sub rsp, 16                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
+    sub rsp, 40                     ; Sub 16 from rsp (1 parameter * 8, but must keep stack 16 byte aligned, so sub 16)
     call stringTo                   ; Call stringTo function with result as parameter to print
-    add rsp, 16                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    add rsp, 40                     ; Add 16 bytes to rsp (move stack pointer to original position) while keeping aligned
+    
     mov rax, 1                      ; Move integers which specify exiting to correct registers
     mov rbx, 0
     int      80h                    ; System calls to exit
