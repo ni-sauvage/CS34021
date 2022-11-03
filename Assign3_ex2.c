@@ -44,5 +44,20 @@ int main()
     printf("Result: %d\n", ack3way(2,3,3));
     x--;       
     printf("Oveflows: %d\nUnderflows: %d\nCurrent Register banks: %d\nCalls: %d\n", overflows, underflows, x, calls);
+
+    call();
+    printf("Result: %d\n", ack3way(1,8,8));
+    x--;       
+    printf("Oveflows: %d\nUnderflows: %d\nCurrent Register banks: %d\nCalls: %d\n", overflows, underflows, x, calls);
+
+    call();
+    printf("Result: %d\n", ack3way(2,3,3));
+    x--;       
+    printf("Oveflows: %d\nUnderflows: %d\nCurrent Register banks: %d\nCalls: %d\n", overflows, underflows, x, calls);
+
+    call();
+    printf("Result: %d\n", ack3way(10,5,2));
+    x--;       
+    printf("Oveflows: %d\nUnderflows: %d\nCurrent Register banks: %d\nCalls: %d\n", overflows, underflows, x, calls);
     return 0;
 }
