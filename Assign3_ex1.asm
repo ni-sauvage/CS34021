@@ -35,6 +35,6 @@ main:
     xor r0, r0,   r0            ; NOP operation, delay while call being calculated
     add r0, r0,   r1            ; Move 0 into r1
     ret r31(0)                  ; return 0 
-    xor r0,  r0, r0              ; NOP operation, delay while return being calculated
+    xor r0,  r0, r0             ; NOP operation, delay while return being calculated
 
 
