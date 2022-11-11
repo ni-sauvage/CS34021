@@ -20,9 +20,9 @@ max4:
     callr max3, r15              ; Call max3 with params a, b, c
     xor r0,  r0, r0              ; NOP operation, delay while call being calculated
     add r29, r0, r12             ; Set up second call by moving r29 into r12 (third param == d)
-    add r28, r0, r11             ; Set up second call by moving r29 into r12 (second param == c)
+    add r28, r0, r11             ; Set up second call by moving r29 into r11 (second param == c)
     add r1,  r0, r10             ; Set up second call by moving result of first call into r10 (first call)
-    callr max3, r15              ; Call max3 with params max3(a, b, c), c, d. c has not moved from r11, so we do not need to load it again.
+    callr max3, r15              ; Call max3 with params max3(a, b, c), c, d.
     xor r0,  r0, r0              ; NOP operation, delay while call being calculated
     ret r31(0)                   ; Return the result of the second call
     xor r0,  r0, r0              ; NOP operation, delay while return being calculated
