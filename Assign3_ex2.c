@@ -46,16 +46,21 @@ int main()
     x--;                                     // There will be 2 currently active register banks, but we do not want to call ret() as this would detect underflow, which is not correct: In main, there is only 1 active register bank.
     printf("Oveflows: %d\nUnderflows: %d\nCurrent Register banks: %d\nCalls: %d\n", overflows, underflows, x, calls); //print results
 
+
+    x = 1;              // Current active register banks. As we start in main, there is 1 active register bank
+    overflows = 0;      // No overflows yet
+    underflows = 0;     // No underflows yet
+    calls = 0;          // No calls to ack3way yet
     call();                                 // Call call() function, will increment register banks and detect overflow  
     printf("Result: %d\n", ack3way(1,8,8)); // print result from function
     x--;                                    // There will be 2 currently active register banks, but we do not want to call ret() as this would detect underflow, which is not correct: In main, there is only 1 active register bank.
     printf("Oveflows: %d\nUnderflows: %d\nCurrent Register banks: %d\nCalls: %d\n", overflows, underflows, x, calls);
-
-    call();                                 // Call call() function, will increment register banks and detect overflow                                     
-    printf("Result: %d\n", ack3way(2,3,3)); // print result from function
-    x--;                                    // There will be 2 currently active register banks, but we do not want to call ret() as this would detect underflow, which is not correct: In main, there is only 1 active register bank.
-    printf("Oveflows: %d\nUnderflows: %d\nCurrent Register banks: %d\nCalls: %d\n", overflows, underflows, x, calls);
-
+    
+    
+    x = 1;              // Current active register banks. As we start in main, there is 1 active register bank
+    overflows = 0;      // No overflows yet
+    underflows = 0;     // No underflows yet
+    calls = 0;          // No calls to ack3way yet
     call();                                  // Call call() function, will increment register banks and detect overflow
     printf("Result: %d\n", ack3way(10,5,2)); // print result from function
     x--;                                     // There will be 2 currently active register banks, but we do not want to call ret() as this would detect underflow, which is not correct: In main, there is only 1 active register bank.

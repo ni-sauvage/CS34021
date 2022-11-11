@@ -1,12 +1,12 @@
 max3:
     add r26, r0, r1              ; Moves r26 (a / first param) into return value (r1), which we will call M    
     sub r1, r27, r0 {C}          ; Does a subtraction and sets flags/CCF. Compares b / second param and M (a)
-    jle c_label                  ; If Negative flag or Zero flag set, jump to c_label
+    jge c_label                  ; If Negative flag or Zero flag set, jump to c_label
     xor r0,  r0, r0              ; NOP operation, delay while branch being calculated
     add r27, r0, r1              ; r1 (M) = r27 (b)        
 c_label:
     sub r1, r28, r0 {C}          ; Does a subtraction and sets flags/CCF. Compares c / second param and M (a or b depending on which was greater)
-    jle else_label               ; If Negative flag or Zero flag set, jump to c_label
+    jge else_label               ; If Negative flag or Zero flag set, jump to c_label
     xor r0,  r0, r0              ; NOP operation, delay while branch being calculated
     add r28, r0, r1              ; r1 (M) = r28 (c)   
 else_label:            

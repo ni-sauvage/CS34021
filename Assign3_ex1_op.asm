@@ -1,11 +1,11 @@
 max3:
     sub r27, r26, r0 {C}         ; Does a subtraction and sets flags/CCF. Compares b / second param and M (a)
-    jge  c_label                 ; If Negative flag or Zero flag set, jump to c_label, will execute next instruction beforehand
+    jle  c_label                 ; If Negative flag or Zero flag set, jump to c_label, will execute next instruction beforehand
     add r26, r0, r1              ; Moves r26 (a / first param) into return value (r1), which we will call M    
     add r27, r0, r1              ; r1 (M) = r27 (b) - will only get executed if branch is not taken
 c_label:
     sub r28, r1, r0 {C}          ; Does a subtraction and sets flags/CCF. Compares c / second param and M (a or b depending on which was greater)
-    jge else_label               ; If Negative flag or Zero flag set, jump to c_label
+    jle else_label               ; If Negative flag or Zero flag set, jump to c_label
     xor r0,  r0, r0              ; NOP operation, delay while branch being calculated - can't optimise here, sole instruction in branch is overwriting return value
     add r28, r0, r1              ; r1 (M) = r28 (c) - will only get executed if branch is not taken
 else_label:            
