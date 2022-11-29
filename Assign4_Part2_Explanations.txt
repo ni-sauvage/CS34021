@@ -1,0 +1,19 @@
+i)
+
+For the first configuration,
+The pages support 2^12 entries, or 4096 entries. Each entry is a byte, so 4KB.
+For the second configuration,
+The pages support 2^13 entries, or 8192 entries. Each entry is a byte, so 8KB.
+
+
+
+ii)
+For the first configuration,
+The tertiary page table supports 2^5 or 32 references to pages. Each entry is a byte, so 32B.
+The secondary page table supports 2^7 or 128 references to tertiary page tables. Each entry is a byte, so 128B.
+The primary page table supports 2^8 or 256 references to tertiary page tables. Each entry is a byte, so 256B.
+
+For the second configuration,
+The tertiary page table supports 2^5 or 32 references to pages. Each entry is a byte, so 32B.
+The secondary page table supports 2^7 or 128 references to tertiary page tables. Each entry is a byte, so 128B.
+The primary page table supports 2^7 or 128 references to tertiary page tables. Each entry is a byte, so 128B.
