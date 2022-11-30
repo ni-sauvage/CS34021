@@ -13,6 +13,17 @@ We know that the registers had the correct values as all data was successfully f
 
 ii) Yes, it will take 10 clock cycles if we use out-of-order scheduling by switching R3 = R3 - R2 and R1 = R1 + R2. thus, we will not need to stall for R1 to be calculated. In fact, there is no stalling in this solution, therefore it is optimal while still being correct.
 
-iii) Without forwarding, it will take 15 clock cycles to complete, as we will have to wait for writeback to occur. The final value of R1, R2, and R3 will still be R1=13, R2=8,  R3=21, as deactivating forwarding and waiting in the pipeline will not affect correctness, only efficiency. See the diagram for more info.
+iii) Without forwarding, it will take 17 clock cycles to complete, as we will have to wait for writeback to occur. The final value of R1, R2, and R3 will still be R1=13, R2=8,  R3=21, as deactivating forwarding and waiting in the pipeline will not affect correctness, only efficiency. See the diagram for more info.
 
-iv) If we have an improperly configured pipeline that does not stall or forward, then it will take 10 clock cycles to execute (see diagram), but the final values will be incorrect. These final values are: R1=11, R2=11, R3=-2. This is because execution/evaluation occurs before write-back.
+iv) If we have an improperly configured pipeline that does not stall or forward, then it will take 10 clock cycles to execute (see diagram), but the final values will be incorrect. These final values are: R1=11, R2=5, R3=11. This is because execution/evaluation occurs before write-back.
+
+The operands going into EX phase of the instructions will be as follows:
+                  | R1=5,  R2=3,  R3=1
+R1=MemContent[R2] | R1=5,  R2=3,  R3=1
+R1 = R1 + R2      | R1=5,  R2=3,  R3=1
+R3 = R3 - R2      | R1=5,  R2=3,  R3=1
+R2 = R1 + R2      | R1=2,  R2=3,  R3=1
+R1 = R1 + R2      | R1=8, R2=3,  R3=1
+R3 = R1 + R2      | R1=8, R2=3,  R3=-2
+
+See the diagram for more information.
