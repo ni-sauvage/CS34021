@@ -9,8 +9,10 @@ The second problem required us to write an x86 algorithm to convert an integer i
 
 The third section involved theoretical questions about terminology relating to computer architecture.
 
-[My solution to the first problem](https://github.com/ni-sauvage/CS34021/blob/main/Assignment1/Assign1_ex1.asm). 
+[My solution to the first problem](https://github.com/ni-sauvage/CS34021/blob/main/Assignment1/Assign1_ex1.asm).
+
 [My solution to the second problem](https://github.com/ni-sauvage/CS34021/blob/main/Assignment1/Assign1_ex2.asm). 
+
 [My solution to the third problem](https://github.com/ni-sauvage/CS34021/blob/main/Assignment1/Assign1_ex3.txt).
 
 ### [Assignment 2](https://github.com/ni-sauvage/CS34021/tree/main/Assignment2)
@@ -28,8 +30,10 @@ This assignment saw us dive into [RISC](https://en.wikipedia.org/wiki/Reduced_in
 
 Second, we simulated the [Ackermann function](https://en.wikipedia.org/wiki/Ackermann_function) running on RISC architecture using C. This involved calculating how many underflows and overflows were caused by this function as RISC has 8 register banks which correspond to 8 levels of recursion/context switching. If we exceed this, we push them to the stack, if our register banks are empty, we pop from the stack. 
 
-[My solution to the first problem, unoptimised](https://github.com/ni-sauvage/CS34021/blob/main/Assignment3/Assign3_ex1_unop.asm). 
+[My solution to the first problem, unoptimised](https://github.com/ni-sauvage/CS34021/blob/main/Assignment3/Assign3_ex1_unop.asm).
+
 [My solution to the first problem, unoptimised](https://github.com/ni-sauvage/CS34021/blob/main/Assignment3/Assign3_ex1_op.asm). 
+
 [My solution to the second problem](https://github.com/ni-sauvage/CS34021/blob/main/Assignment3/Assign3_ex2.c). 
 
 ### [Assignment 4](https://github.com/ni-sauvage/CS34021/tree/main/Assignment4)
@@ -50,4 +54,5 @@ Assignment 4 dealt with the MIPS pipeline under certain conditions (two-phase en
 
 #### Virtual Memory (Part 2)
 ![First Virtual Memory exercise](https://github.com/ni-sauvage/CS34021/blob/main/Assignment4/Assign4_Part2_Ex3.png)
+
 ![Second Virtual Memory exercise](https://github.com/ni-sauvage/CS34021/blob/main/Assignment4/Assign4_Part2_Ex4.png)
