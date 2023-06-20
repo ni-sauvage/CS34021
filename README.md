@@ -20,7 +20,7 @@ Assignment 2 was all about recursion and the stack. Exercise 1 involved writing 
 
 Exercise 2 was the first foray into x64 and all that comes with it, involving shadow space and stack alignment. We were merely meant to translate a C function into x64 which would sum N, N-1, N-2 and N-3 where N was a natural number (skipping if it was negative) and repeat recursively. However, it was also necessary to write a function which could convert this value into a string for printing. 
 
-![N=6 stack frames](https://github.com/ni-sauvage/CS34021/blob/main/Assignment2/Assign2_ex01_stack.png) ![Recursive stack frame Diagram x64](https://github.com/ni-sauvage/CS34021/blob/main/Assignment2/Assign2_ex02_stack.png)
+![N=6 stack frames](https://github.com/ni-sauvage/CS34021/blob/main/Assignment2/Assign2_ex01_stack.png) <img src=https://github.com/ni-sauvage/CS34021/blob/main/Assignment2/Assign2_ex02_stack.png alt="Recursive stack frame Diagram x64" width=189 height=841/>
 
 [My solution to the first problem](https://github.com/ni-sauvage/CS34021/blob/main/Assignment2/Assign2_ex1.asm). 
 [My solution to the second problem](https://github.com/ni-sauvage/CS34021/blob/main/Assignment2/Assign2_ex2.asm). 
